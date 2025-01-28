@@ -1,9 +1,14 @@
 # this allows us to use code from
 # the open-source pygame library
 # throughout this file
-import pygame # type: ignore
+import pygame 
 from constants import *
 from player import Player
+
+updatable = pygame.sprite.group()
+drawable = pygame.sprite.group()
+
+Player.container = (updatable, drawable)
 
 def main():
     pygame.init()
