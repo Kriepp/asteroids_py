@@ -4,10 +4,11 @@ from circleshape import CircleShape
 from shot import Shot
 
 class Player(CircleShape):
-    def __init__(self, x, y):
+    def __init__(self, x, y, player_lives):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
         self.timer = 0
+        self.lives = player_lives
 
     # in the player class
     def triangle(self):
@@ -39,6 +40,9 @@ class Player(CircleShape):
             if self.timer <= 0:
                 self.shoot()
                 self.timer = PLAYER_SHOOT_COOLDOWN
+        if keys[pygame.K_d]:
+            print('Player Dies')
+            self.lives -= 1
         self.timer -= dt
 
     

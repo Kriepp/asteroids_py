@@ -26,3 +26,7 @@ class CircleShape(pygame.sprite.Sprite):
         if distance <= self.radius + other.radius:
             return True
         return False
+    
+    def zero_lives(self):
+        # sub-class of Player must override
+        pass
