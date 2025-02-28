@@ -8,6 +8,13 @@ from player import (Player, Shot)
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 
+def respawn_player(player, x, y):
+    player.center = (x, y)
+    player.lives -= 1
+    if player.lives == 0:
+        print('Game over!')
+        sys.exit()
+
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -40,8 +47,7 @@ def main():
             sprite.update(dt)
         for asteroid in asteroids:
             if asteroid.collision(player):
-                print('Game over!')
-                sys.exit()
+                respawn_player(player, x, y)
             for bullet in shots:
                 if bullet.collision(asteroid):
                     bullet.kill()

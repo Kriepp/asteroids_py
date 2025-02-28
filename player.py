@@ -1,4 +1,5 @@
 import pygame
+import sys
 from constants import *
 from circleshape import CircleShape
 from shot import Shot
@@ -40,12 +41,8 @@ class Player(CircleShape):
             if self.timer <= 0:
                 self.shoot()
                 self.timer = PLAYER_SHOOT_COOLDOWN
-        if keys[pygame.K_d]:
-            print('Player Dies')
-            self.lives -= 1
         self.timer -= dt
 
-    
     def move(self, dt):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         self.position += forward * PLAYER_SPEED * dt
@@ -55,4 +52,5 @@ class Player(CircleShape):
         shot.velocity = pygame.Vector2(0, 1)
         shot.velocity = shot.velocity.rotate(self.rotation)
         shot.velocity = shot.velocity * PLAYER_SHOOT_SPEED
+
 
